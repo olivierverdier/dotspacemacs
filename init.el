@@ -273,7 +273,15 @@ in `dotspacemacs/user-config'."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
-  )
+  ;; from http://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
+  ;; c-k/c-j for page down/up
+  (define-key evil-normal-state-map (kbd "C-k") (lambda ()
+                                                  (interactive)
+                                                  (evil-scroll-up nil)))
+  (define-key evil-normal-state-map (kbd "C-j") (lambda ()
+                                                  (interactive)
+                                                  (evil-scroll-down nil)))
 
+)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
