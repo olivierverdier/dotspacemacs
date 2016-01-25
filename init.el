@@ -273,6 +273,11 @@ in `dotspacemacs/user-config'."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+
+  (setq mac-command-modifier 'meta)
+  (setq mac-control-modifier 'control)
+  (setq mac-option-modifier 'nil)
+
   ;; from http://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
   ;; c-k/c-j for page down/up
   (define-key evil-normal-state-map (kbd "C-k") (lambda ()
