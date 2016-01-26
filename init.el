@@ -289,6 +289,19 @@ layers configuration. You are free to put any user code."
                                                   (evil-scroll-down nil)))
 
 
+  ;; LaTeX
+  (setq-default TeX-engine 'xetex)      ; use xelatex by default
+
+  ;; From http://stackoverflow.com/a/2248056/262667
+  (add-hook 'LaTeX-mode-hook (lambda ()
+                               (push 
+                                '("Pydflatex" "pydflatex -xk %s" TeX-run-TeX nil t
+                                  :help "Run Pydflatex on file")
+                                TeX-command-list)))
+
+  (setq TeX-auto-local ".auto/")
+
+
   ;; Indentation with tabs
   ;; (setq-default indent-tabs-mode t)
 	(setq dtrt-indent-mode t)
