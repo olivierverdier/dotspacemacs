@@ -289,6 +289,14 @@ layers configuration. You are free to put any user code."
                                                   (evil-scroll-down nil)))
 
 
+  ;; persistent undo
+  ;; https://github.com/syl20bnr/spacemacs/issues/774#issuecomment-77712618
+  (setq undo-tree-auto-save-history t
+        undo-tree-history-directory-alist
+        `(("." . ,(concat spacemacs-cache-directory "undo"))))
+  (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
+    (make-directory (concat spacemacs-cache-directory "undo")))
+
   ;; LaTeX
   (setq-default TeX-engine 'xetex)      ; use xelatex by default
 
