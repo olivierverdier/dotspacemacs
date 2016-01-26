@@ -43,6 +43,7 @@ values."
      markdown
      org
      python
+     ranger
      search-engine
      semantic
      shell-scripts
