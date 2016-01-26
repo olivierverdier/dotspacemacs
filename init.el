@@ -323,6 +323,9 @@ layers configuration. You are free to put any user code."
   ;; Indentation with tabs
   ;; (setq-default indent-tabs-mode t)
 	(setq dtrt-indent-mode t)
+
+	(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+	(global-visual-line-mode 1)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
