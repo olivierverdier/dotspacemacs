@@ -334,7 +334,7 @@ layers configuration. You are free to put any user code."
 	(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 	(global-visual-line-mode 1)
 
-  (setq powerline-default-separator nil)
+  (setq powerline-default-separator 'bar)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
