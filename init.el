@@ -307,6 +307,8 @@ layers configuration. You are free to put any user code."
   (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
     (make-directory (concat spacemacs-cache-directory "undo")))
 
+  (setq calendar-week-start-day 1)
+
   ;; LaTeX
   (setq-default TeX-engine 'xetex)      ; use xelatex by default
 
