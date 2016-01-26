@@ -335,6 +335,14 @@ layers configuration. You are free to put any user code."
 	(global-visual-line-mode 1)
 
   (setq powerline-default-separator 'bar)
+
+  (spacemacs/set-leader-keys
+    "gs" (defun ov/magit-status-move-far-right ()
+           (interactive)
+           (magit-status)
+           (evil-window-move-far-right)
+           )
+    )
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
