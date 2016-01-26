@@ -70,7 +70,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(dtrt-indent)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -288,6 +288,10 @@ layers configuration. You are free to put any user code."
                                                   (interactive)
                                                   (evil-scroll-down nil)))
 
+
+  ;; Indentation with tabs
+  ;; (setq-default indent-tabs-mode t)
+	(setq dtrt-indent-mode t)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
