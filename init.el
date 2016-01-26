@@ -288,6 +288,16 @@ layers configuration. You are free to put any user code."
                                                   (interactive)
                                                   (evil-scroll-down nil)))
 
+  ;; helm locate uses mdfind (https://github.com/xiaohanyu/oh-my-emacs/blob/fa06d2a9a2a7b1d78d49bb457c178efdba43d4e1/core/ome-completion.org)
+  (setq helm-locate-command
+        (case system-type
+          ('gnu/linux "locate -i -r %s")
+          ('berkeley-unix "locate -i %s")
+          ('windows-nt "es %s")
+          ('darwin "mdfind -name %s %s")
+          (t "locate %s")))
+  ;; fix from https://github.com/syl20bnr/spacemacs/issues/3280
+  ;; (if (eq system-type 'darwin) (setq helm-locate-fuzzy-match nil))
 
   ;; persistent undo
   ;; https://github.com/syl20bnr/spacemacs/issues/774#issuecomment-77712618
