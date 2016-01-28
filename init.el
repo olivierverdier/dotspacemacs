@@ -345,6 +345,12 @@ layers configuration. You are free to put any user code."
            (evil-window-move-far-right)
            )
     )
+
+  ;; from https://github.com/lunaryorn/.spacemacs.d
+  ;; On OS X the menu bar is always there anyway, and there's no use in an empty
+  ;; menu bar either, so let's re-enable the menu bar on OS X
+  (when (memq window-system '(mac ns))
+    (menu-bar-mode 1))
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
