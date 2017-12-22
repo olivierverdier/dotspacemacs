@@ -464,6 +464,10 @@ layers configuration. You are free to put any user code."
         `(("." . ,(concat spacemacs-cache-directory "undo"))))
   (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
     (make-directory (concat spacemacs-cache-directory "undo")))
+  ;; (/) for page down/up
+  (define-key evil-normal-state-map (kbd "(") 'evil-scroll-up)
+  (define-key evil-normal-state-map (kbd ")") 'evil-scroll-down)
+
 
   ;; from https://www.reddit.com/r/emacs/comments/35eoq3/how_i_use_vim_transferring_to_emacs_spacemacs
 
