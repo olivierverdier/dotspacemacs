@@ -482,12 +482,6 @@ layers configuration. You are free to put any user code."
   (define-key evil-motion-state-map "L" "$")
 
 
-  ;; From http://stackoverflow.com/a/2248056/262667
-  (add-hook 'LaTeX-mode-hook (lambda ()
-                               (push 
-                                '("Pydflatex" "pydflatex -xk %s" TeX-run-TeX nil t
-                                  :help "Run Pydflatex on file")
-                                TeX-command-list)))
 
 
 
