@@ -455,8 +455,6 @@ layers configuration. You are free to put any user code."
           ('windows-nt "es %s")
           ('darwin "mdfind -name %s %s")
           (t "locate %s")))
-  ;; fix from https://github.com/syl20bnr/spacemacs/issues/3280
-  ;; (if (eq system-type 'darwin) (setq helm-locate-fuzzy-match nil))
 
 
   ;; persistent undo
