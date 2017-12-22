@@ -481,6 +481,7 @@ layers configuration. You are free to put any user code."
   (define-key evil-visual-state-map "L" "$")
   (define-key evil-motion-state-map "L" "$")
 
+  (define-key evil-normal-state-map "!" 'spacemacs/alternate-buffer)
 
 
 
