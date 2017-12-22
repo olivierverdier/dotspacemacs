@@ -415,6 +415,13 @@ It should only modify the values of Spacemacs settings."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
+  (setq-default
+   ;; Evil
+   evil-want-C-i-jump t
+   evil-want-Y-yank-to-eol t
+   evil-want-visual-char-semi-exclusive t
+   evil-want-abbrev-expand-on-insert-exit nil
+  )
   )
 
 (defun dotspacemacs/user-config ()
