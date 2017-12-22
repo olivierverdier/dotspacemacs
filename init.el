@@ -513,6 +513,22 @@ layers configuration. You are free to put any user code."
   powerline-default-separator 'bar
  )
 (spaceline-compile)
+;; Theming
+(setq-default
+ theming-modifications
+ '((material
+    (font-lock-function-name-face :weight semibold)
+    (font-lock-comment-face :slant italic :weight ultralight)
+    (font-lock-string-face :slant italic)
+    (font-lock-doc-face :slant italic :weight ultralight)
+    (font-lock-keyword-face :weight bold)
+    (font-lock-constant-face :weight semibold)
+    (font-lock-builtin-face :weight semibold)
+    ))
+)
+
+(load-theme 'material t)
+
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
