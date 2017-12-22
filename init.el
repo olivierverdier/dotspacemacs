@@ -490,10 +490,9 @@ layers configuration. You are free to put any user code."
   ;; (setq-default indent-tabs-mode t)
 	(setq dtrt-indent-mode t)
 
-  ;; Always wrap lines
-	(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
-	(global-visual-line-mode 1)
 
+  ;; Visual (wrapped) line indicators
+	(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
   (spacemacs/set-leader-keys
     "gs" (defun ov/magit-status-move-far-right ()
