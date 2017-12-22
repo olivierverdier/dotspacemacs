@@ -468,6 +468,9 @@ layers configuration. You are free to put any user code."
   (define-key evil-normal-state-map (kbd "(") 'evil-scroll-up)
   (define-key evil-normal-state-map (kbd ")") 'evil-scroll-down)
 
+  (define-key evil-normal-state-map (kbd "K") 'evil-jump-item)
+  (define-key evil-visual-state-map (kbd "K") 'evil-jump-item)
+  (define-key evil-motion-state-map (kbd "K") 'evil-jump-item)
 
   ;; from https://www.reddit.com/r/emacs/comments/35eoq3/how_i_use_vim_transferring_to_emacs_spacemacs
 
