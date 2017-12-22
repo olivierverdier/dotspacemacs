@@ -493,7 +493,6 @@ layers configuration. You are free to put any user code."
 	(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 	(global-visual-line-mode 1)
 
-  (setq powerline-default-separator 'bar)
 
   (spacemacs/set-leader-keys
     "gs" (defun ov/magit-status-move-far-right ()
@@ -508,6 +507,12 @@ layers configuration. You are free to put any user code."
   ;; menu bar either, so let's re-enable the menu bar on OS X
   (when (memq window-system '(mac ns))
     (menu-bar-mode 1))
+;; Spaceline
+(setq-default
+  ;; spaceline-version-control-p nil
+  powerline-default-separator 'bar
+ )
+(spaceline-compile)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
