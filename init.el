@@ -465,6 +465,14 @@ layers configuration. You are free to put any user code."
   (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
     (make-directory (concat spacemacs-cache-directory "undo")))
 
+  ;; from https://www.reddit.com/r/emacs/comments/35eoq3/how_i_use_vim_transferring_to_emacs_spacemacs
+
+  (define-key evil-normal-state-map "H" "^")
+  (define-key evil-visual-state-map "H" "^")
+  (define-key evil-motion-state-map "H" "^")
+  (define-key evil-normal-state-map "L" "$")
+  (define-key evil-visual-state-map "L" "$")
+  (define-key evil-motion-state-map "L" "$")
 
 
   ;; From http://stackoverflow.com/a/2248056/262667
