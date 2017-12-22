@@ -446,14 +446,6 @@ This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
 
 
-  ;; from http://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
-  ;; c-k/c-j for page down/up
-  (define-key evil-normal-state-map (kbd "C-k") (lambda ()
-                                                  (interactive)
-                                                  (evil-scroll-up nil)))
-  (define-key evil-normal-state-map (kbd "C-j") (lambda ()
-                                                  (interactive)
-                                                  (evil-scroll-down nil)))
 
   ;; helm locate uses mdfind (https://github.com/xiaohanyu/oh-my-emacs/blob/fa06d2a9a2a7b1d78d49bb457c178efdba43d4e1/core/ome-completion.org)
   (setq helm-locate-command
