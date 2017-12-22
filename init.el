@@ -35,46 +35,76 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
+     ;; helm
+     (auto-completion
+      :variables
+       auto-completion-return-key-behavior nil
+      )
      ;; better-defaults
+     bibtex
+     c-c++
      colors
+     command-log
      coq
      cscope
+     dash
      deft
      emacs-lisp
-     (evil-snipe :variables
-                 evil-snipe-enable-alternate-f-and-t-behaviors t
-                 )
+     emoji
+     ;; (evil-snipe :variables
+     ;;             evil-snipe-enable-alternate-f-and-t-behaviors t
+     ;;             )
+     evil-snipe
+     ;; eyebrowse
      fasd
      git
+     ;; gnus
+     graphviz
      gtags
-     haskell
+     (haskell :variables
+              haskell-completion-backend 'intero
+              )
      html
      ipython-notebook
      javascript
      markdown
      org
-     python
-     ranger
+     ;; pdf-tools
+     ;; (osx :variables
+     ;;      osx-use-option-as-meta nil
+     ;;  )
+     (python :variables
+             python-test-runner 'pytest
+             )
+     (ranger :variables
+             ranger-replace-dired t
+             )
      search-engine
      semantic
      shell-scripts
+     ;; spacemacs-ivy
+     spacemacs-layouts
      spell-checking
      syntax-checking
      themes-megapack
-     unimpaired
+     ;; treemacs
+     ;; unimpaired
      (latex :variables
             latex-enable-auto-fill nil
             latex-build-command "LaTeX"
+            latex-enable-folding nil
             )
      (shell :variables
+            shell-default-shell 'shell
             shell-default-height 30
             shell-default-position 'bottom)
+     shell-scripts
      (theming :variables
               theming-headings-inherit-from-default 'all
               theming-headings-same-size 'all
               theming-headings-bold 'all)
      version-control
+     ;; vim-powerline
      ;; vinegar
      yaml
      )
@@ -83,7 +113,7 @@ This function should only modify configuration layer settings."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(dtrt-indent)
-   ;; A list of packages and/or extensions that will not be install and loaded.
+   dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
