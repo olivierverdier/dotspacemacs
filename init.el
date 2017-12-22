@@ -426,6 +426,11 @@ in `dotspacemacs/user-config'."
     mac-control-modifier 'control
     mac-option-modifier 'nil
 
+  ;; Weeks start on Monday
+  calendar-week-start-day 1
+  ;; 24h format
+  display-time-24hr-format t
+
   ;; LaTeX
   ;; use xelatex by default
   TeX-engine 'xetex
@@ -474,7 +479,6 @@ layers configuration. You are free to put any user code."
   (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
     (make-directory (concat spacemacs-cache-directory "undo")))
 
-  (setq calendar-week-start-day 1)
 
 
   ;; From http://stackoverflow.com/a/2248056/262667
