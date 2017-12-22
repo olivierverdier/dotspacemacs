@@ -426,6 +426,12 @@ in `dotspacemacs/user-config'."
     mac-control-modifier 'control
     mac-option-modifier 'nil
 
+  ;; LaTeX
+  ;; use xelatex by default
+  TeX-engine 'xetex
+  ;; hidden auto folder
+  TeX-auto-local ".auto/"
+
   )
   )
 
@@ -470,8 +476,6 @@ layers configuration. You are free to put any user code."
 
   (setq calendar-week-start-day 1)
 
-  ;; LaTeX
-  (setq-default TeX-engine 'xetex)      ; use xelatex by default
 
   ;; From http://stackoverflow.com/a/2248056/262667
   (add-hook 'LaTeX-mode-hook (lambda ()
@@ -480,7 +484,6 @@ layers configuration. You are free to put any user code."
                                   :help "Run Pydflatex on file")
                                 TeX-command-list)))
 
-  (setq TeX-auto-local ".auto/")
 
 
   ;; Indentation with tabs
