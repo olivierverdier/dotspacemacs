@@ -421,6 +421,11 @@ in `dotspacemacs/user-config'."
    evil-want-Y-yank-to-eol t
    evil-want-visual-char-semi-exclusive t
    evil-want-abbrev-expand-on-insert-exit nil
+   ;; Mac
+    mac-command-modifier 'meta
+    mac-control-modifier 'control
+    mac-option-modifier 'nil
+
   )
   )
 
@@ -429,9 +434,6 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
 
-  (setq mac-command-modifier 'meta)
-  (setq mac-control-modifier 'control)
-  (setq mac-option-modifier 'nil)
 
   ;; from http://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
   ;; c-k/c-j for page down/up
