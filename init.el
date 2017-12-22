@@ -483,7 +483,6 @@ layers configuration. You are free to put any user code."
   ;; Always wrap lines
 	(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 	(global-visual-line-mode 1)
-  (spacemacs|diminish visual-line-mode " ⓦ" " W")
 
   (setq powerline-default-separator 'bar)
 
