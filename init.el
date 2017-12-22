@@ -458,10 +458,6 @@ layers configuration. You are free to put any user code."
   ;; fix from https://github.com/syl20bnr/spacemacs/issues/3280
   ;; (if (eq system-type 'darwin) (setq helm-locate-fuzzy-match nil))
 
-  ;; Coq
-  ;; from http://endlessparentheses.com/proof-general-configuration-for-the-coq-software-foundations-tutorial.html
-    ;;; Hybrid mode by default
-    (setq proof-three-window-mode-policy 'hybrid)
 
   ;; persistent undo
   ;; https://github.com/syl20bnr/spacemacs/issues/774#issuecomment-77712618
