@@ -421,6 +421,7 @@ in `dotspacemacs/user-config'."
    evil-want-Y-yank-to-eol t
    evil-want-visual-char-semi-exclusive t
    evil-want-abbrev-expand-on-insert-exit nil
+
    ;; Mac
     mac-command-modifier 'meta
     mac-control-modifier 'control
@@ -464,6 +465,8 @@ layers configuration. You are free to put any user code."
         `(("." . ,(concat spacemacs-cache-directory "undo"))))
   (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
     (make-directory (concat spacemacs-cache-directory "undo")))
+
+  ;; define-keys
   ;; (/) for page down/up
   (define-key evil-normal-state-map (kbd "(") 'evil-scroll-up)
   (define-key evil-normal-state-map (kbd ")") 'evil-scroll-down)
@@ -484,8 +487,6 @@ layers configuration. You are free to put any user code."
   (define-key evil-normal-state-map "!" 'spacemacs/alternate-buffer)
 
 
-
-
   ;; Indentation with tabs
   ;; (setq-default indent-tabs-mode t)
 	(setq dtrt-indent-mode t)
@@ -494,6 +495,7 @@ layers configuration. You are free to put any user code."
   ;; Visual (wrapped) line indicators
 	(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
+  ;; magit window on far right
   (spacemacs/set-leader-keys
     "gs" (defun ov/magit-status-move-far-right ()
            (interactive)
@@ -507,12 +509,14 @@ layers configuration. You are free to put any user code."
   ;; menu bar either, so let's re-enable the menu bar on OS X
   (when (memq window-system '(mac ns))
     (menu-bar-mode 1))
+
 ;; Spaceline
 (setq-default
   ;; spaceline-version-control-p nil
   powerline-default-separator 'bar
  )
 (spaceline-compile)
+
 ;; Theming
 (setq-default
  theming-modifications
