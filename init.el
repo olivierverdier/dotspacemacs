@@ -51,9 +51,6 @@ This function should only modify configuration layer settings."
      deft
      emacs-lisp
      emoji
-     ;; (evil-snipe :variables
-     ;;             evil-snipe-enable-alternate-f-and-t-behaviors t
-     ;;             )
      evil-snipe
      ;; eyebrowse
      fasd
