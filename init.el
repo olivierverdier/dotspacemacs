@@ -582,6 +582,10 @@ layers configuration. You are free to put any user code."
 	(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
 
+  ;; some leader-keys
+  (spacemacs/set-leader-keys
+    "fi" 'evil-show-file-info
+    )
 
   ;; from https://github.com/lunaryorn/.spacemacs.d
   ;; On OS X the menu bar is always there anyway, and there's no use in an empty
