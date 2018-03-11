@@ -58,7 +58,9 @@ This function should only modify configuration layer settings."
      evil-snipe
      ;; eyebrowse
      fasd
-     git
+     (git :variables
+          git-magit-status-fullscreen t
+          )
      ;; gnus
      graphviz
      gtags
@@ -579,14 +581,7 @@ layers configuration. You are free to put any user code."
   ;; Visual (wrapped) line indicators
 	(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
-  ;; magit window on far right
-  (spacemacs/set-leader-keys
-    "gs" (defun ov/magit-status-move-far-right ()
-           (interactive)
-           (magit-status)
-           (evil-window-move-far-right)
-           )
-    )
+
 
   ;; from https://github.com/lunaryorn/.spacemacs.d
   ;; On OS X the menu bar is always there anyway, and there's no use in an empty
