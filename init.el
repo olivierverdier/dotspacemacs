@@ -56,7 +56,7 @@ This function should only modify configuration layer settings."
      emoji
      evil-snipe
      ;; eyebrowse
-     fasd
+     ;; fasd
      (git :variables
           git-magit-status-fullscreen t
           )
