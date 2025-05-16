@@ -3,6 +3,7 @@
 (setq org-directory "~/Nextcloud/org")
 (setq org-agenda-files '("~/Nextcloud/org"))
 (setq org-default-notes-file "~/Nextcloud/org/tasks.org")
+(setq org-todo-dependencies-strategy 'naive-auto)
 (setq org-todo-keywords
       '((sequence "TODO(t)" "PROG(p)" "DONE(d)")))
 (setq org-modern-todo-faces
