@@ -616,120 +616,247 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq-default
-   ;; Evil
-   evil-want-C-i-jump t
-   evil-want-Y-yank-to-eol t
-   evil-want-visual-char-semi-exclusive t
-   evil-want-abbrev-expand-on-insert-exit nil
-
    ;; Mac
-    mac-command-modifier 'meta
-    mac-control-modifier 'control
-    mac-option-modifier 'nil
-
-  ;; Weeks start on Monday
-  calendar-week-start-day 1
-  ;; 24h format
-  display-time-24hr-format t
-
-  ;; LaTeX
-  ;; use xelatex by default
-  TeX-engine 'xetex
-  ;; hidden auto folder
-  TeX-auto-local ".auto/"
-
+   mac-command-modifier 'meta
+   mac-control-modifier 'control
+   mac-option-modifier 'nil
+   )
   )
+
+
+(defun dotspacemacs/user-load ()
+  "Library to load while dumping.
+This function is called only while dumping Spacemacs configuration. You can
+`require' or `load' the libraries of your choice that will be included in the
+dump."
   )
 
 (defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration. You are free to put any user code."
+  "Configuration for user code:
+This function is called at the very end of Spacemacs startup, after layer
+configuration.
+Put your configuration code here, except for variables that should be set
+before packages are loaded."
+
+  ;; (setq magit-log-arguments '("--graph" "--color" "--decorate" "--show-signature"))
+
+  (setq-default
+   ;; Weeks start on Monday
+   calendar-week-start-day 1
+   ;; 24h format
+   display-time-24hr-format t
+
+   ranger-override-dired t
+
+   )
+
+
+  (load-file (expand-file-name "llm.el" dotspacemacs-directory))
+  (load-file (expand-file-name "latex.el" dotspacemacs-directory))
+  (load-file (expand-file-name "theme.el" dotspacemacs-directory))
+  (load-file (expand-file-name "misc.el" dotspacemacs-directory))
+  (load-file (expand-file-name "evil.el" dotspacemacs-directory))
+  (load-file (expand-file-name "modeline.el" dotspacemacs-directory))
+
+  (with-eval-after-load 'org
+    (load-file (expand-file-name "org.el" dotspacemacs-directory))
+    )
 
 
 
-  ;; helm locate uses mdfind (https://github.com/xiaohanyu/oh-my-emacs/blob/fa06d2a9a2a7b1d78d49bb457c178efdba43d4e1/core/ome-completion.org)
-  (setq helm-locate-command
-        (case system-type
-          ('gnu/linux "locate -i -r %s")
-          ('berkeley-unix "locate -i %s")
-          ('windows-nt "es %s")
-          ('darwin "mdfind -name %s %s")
-          (t "locate %s")))
 
-
-  ;; persistent undo
-  ;; https://github.com/syl20bnr/spacemacs/issues/774#issuecomment-77712618
-  (setq undo-tree-auto-save-history t
-        undo-tree-history-directory-alist
-        `(("." . ,(concat spacemacs-cache-directory "undo"))))
-  (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
-    (make-directory (concat spacemacs-cache-directory "undo")))
-
-  ;; define-keys
-  ;; (/) for page down/up
-  (define-key evil-normal-state-map (kbd "(") 'evil-scroll-up)
-  (define-key evil-normal-state-map (kbd ")") 'evil-scroll-down)
-
-  (define-key evil-normal-state-map (kbd "K") 'evil-jump-item)
-  (define-key evil-visual-state-map (kbd "K") 'evil-jump-item)
-  (define-key evil-motion-state-map (kbd "K") 'evil-jump-item)
-
-  ;; from https://www.reddit.com/r/emacs/comments/35eoq3/how_i_use_vim_transferring_to_emacs_spacemacs
-
-  (define-key evil-normal-state-map "H" "^")
-  (define-key evil-visual-state-map "H" "^")
-  (define-key evil-motion-state-map "H" "^")
-  (define-key evil-normal-state-map "L" "$")
-  (define-key evil-visual-state-map "L" "$")
-  (define-key evil-motion-state-map "L" "$")
-
-  (define-key evil-normal-state-map "!" 'spacemacs/alternate-buffer)
-
-
-  ;; Indentation with tabs
-  ;; (setq-default indent-tabs-mode t)
-	(setq dtrt-indent-mode t)
+  ;; Ranger
+  ;; (setq ranger-show-hidden nil)
+  ;; (setq ranger-deer-show-details nil)
+  ;; (setq ranger-persistent-sort "t")
 
 
   ;; Visual (wrapped) line indicators
-	(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+  (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+
+  ;; Make sure bookmarks are saved from one install to another
+  (setq bookmark-default-file (expand-file-name (concat dotspacemacs-directory "bookmarks")))
 
 
-  ;; some leader-keys
-  (spacemacs/set-leader-keys
-    "fi" 'evil-show-file-info
-    )
+  ) ;; End of dotspacemacs/user-config
 
-  ;; from https://github.com/lunaryorn/.spacemacs.d
-  ;; On OS X the menu bar is always there anyway, and there's no use in an empty
-  ;; menu bar either, so let's re-enable the menu bar on OS X
-  (when (memq window-system '(mac ns))
-    (menu-bar-mode 1))
-
-;; Spaceline
-(setq-default
-  ;; spaceline-version-control-p nil
-  powerline-default-separator 'bar
- )
-(spaceline-compile)
-
-;; Theming
-(setq-default
- theming-modifications
- '((material
-    (font-lock-function-name-face :weight semibold)
-    (font-lock-comment-face :slant italic :weight ultralight)
-    (font-lock-string-face :slant italic)
-    (font-lock-doc-face :slant italic :weight ultralight)
-    (font-lock-keyword-face :weight bold)
-    (font-lock-constant-face :weight semibold)
-    (font-lock-builtin-face :weight semibold)
-    ))
-)
-
-(load-theme 'material t)
-
-)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(ansi-color-faces-vector
+     [default bold shadow italic underline bold bold-italic bold])
+   '(compilation-message-face 'default)
+   '(custom-safe-themes
+     '("5bcd0c26bad3303c0325d12dd6562e4f7892d39d390d7db194dd141ba971cad7"
+       "f04122bbc305a202967fa1838e20ff741455307c2ae80a26035fbf5d637e325f" default))
+   '(evil-want-Y-yank-to-eol t)
+   '(highlight-changes-colors '("#FD5FF0" "#AE81FF"))
+   '(highlight-tail-colors
+     '(("#3E3D31" . 0) ("#67930F" . 20) ("#349B8D" . 30) ("#21889B" . 50)
+       ("#968B26" . 60) ("#A45E0A" . 70) ("#A41F99" . 85) ("#3E3D31" . 100)))
+   '(hl-sexp-background-color "#1c1f26")
+   '(magit-diff-use-overlays nil)
+   '(magit-log-arguments '("-n256" "--graph" "--decorate" "--color"))
+   '(nrepl-message-colors
+     '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3"
+       "#DC8CC3"))
+   '(org-agenda-files '("/Users/olivier/Nextcloud/org/tasks.org"))
+   '(package-selected-packages
+     '(white-sand-theme rebecca-theme powershell org-mime helm-dash exotica-theme
+                        ghub treepy let-alist graphql dash-at-point
+                        graphviz-dot-mode zonokai-theme zenburn-theme
+                        zen-and-art-theme yapfify yaml-mode xterm-color ws-butler
+                        writegood-mode winum which-key web-mode web-beautify
+                        volatile-highlights vi-tilde-fringe uuidgen use-package
+                        underwater-theme ujelly-theme twilight-theme
+                        twilight-bright-theme twilight-anti-bright-theme
+                        toxi-theme toc-org tao-theme tangotango-theme
+                        tango-plus-theme tango-2-theme tagedit sunny-day-theme
+                        sublime-themes subatomic256-theme subatomic-theme
+                        stickyfunc-enhance srefactor spaceline powerline
+                        spacegray-theme soothe-theme solarized-theme
+                        soft-stone-theme soft-morning-theme soft-charcoal-theme
+                        smyx-theme smeargle slim-mode shell-pop seti-theme
+                        scss-mode sass-mode reverse-theme restart-emacs ranger
+                        rainbow-mode rainbow-identifiers rainbow-delimiters
+                        railscasts-theme pyvenv pytest pyenv-mode py-isort
+                        purple-haze-theme pug-mode professional-theme popwin
+                        planet-theme pip-requirements phoenix-dark-pink-theme
+                        phoenix-dark-mono-theme persp-mode pcre2el paradox spinner
+                        orgit organic-green-theme org-ref pdf-tools key-chord ivy
+                        tablist org-projectile org-category-capture org-present
+                        org-pomodoro alert log4e gntp org-plus-contrib
+                        org-download org-bullets open-junk-file
+                        omtose-phellack-theme oldlace-theme occidental-theme
+                        obsidian-theme noctilux-theme neotree naquadah-theme
+                        mustang-theme multi-term move-text monokai-theme
+                        monochrome-theme molokai-theme moe-theme mmm-mode
+                        minimal-theme material-theme markdown-toc markdown-mode
+                        majapahit-theme magit-gitflow madhat2r-theme macrostep
+                        lush-theme lorem-ipsum livid-mode live-py-mode
+                        linum-relative link-hint light-soap-theme less-css-mode
+                        json-mode json-snatcher json-reformat js2-refactor
+                        multiple-cursors js-doc jbeans-theme jazz-theme
+                        ir-black-theme intero insert-shebang inkpot-theme info+
+                        indent-guide hydra hy-mode hungry-delete htmlize
+                        hlint-refactor hl-todo hindent highlight-parentheses
+                        highlight-numbers parent-mode highlight-indentation
+                        hide-comnt heroku-theme hemisu-theme help-fns+ helm-themes
+                        helm-swoop helm-pydoc helm-projectile helm-mode-manager
+                        helm-make projectile helm-hoogle helm-gtags helm-gitignore
+                        helm-flycheck helm-flx helm-descbinds helm-css-scss
+                        helm-cscope xcscope helm-company helm-c-yasnippet
+                        helm-bibtex parsebib helm-ag hc-zenburn-theme
+                        haskell-snippets haml-mode gruvbox-theme
+                        gruber-darker-theme grandshell-theme gotham-theme
+                        google-translate golden-ratio gnuplot gitignore-mode
+                        gitconfig-mode gitattributes-mode git-timemachine
+                        git-messenger git-link git-gutter-fringe+
+                        git-gutter-fringe fringe-helper git-gutter+ git-gutter
+                        gh-md ggtags gandalf-theme fuzzy flyspell-correct-helm
+                        flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell
+                        flycheck pkg-info epl flx-ido flx flatui-theme
+                        flatland-theme fish-mode fill-column-indicator fasd
+                        farmhouse-theme fancy-battery eyebrowse
+                        exec-path-from-shell evil-visualstar evil-visual-mark-mode
+                        evil-unimpaired evil-tutor evil-snipe
+                        evil-search-highlight-persist evil-numbers
+                        evil-nerd-commenter evil-mc evil-matchit evil-magit magit
+                        magit-popup git-commit with-editor evil-lisp-state
+                        smartparens evil-indent-plus evil-iedit-state iedit
+                        evil-exchange evil-escape evil-embrace evil-surround
+                        embrace expand-region evil-ediff evil-args evil-anzu anzu
+                        evil goto-chg undo-tree eval-sexp-fu highlight
+                        espresso-theme eshell-z eshell-prompt-extras esh-help
+                        engine-mode emoji-cheat-sheet-plus emmet-mode
+                        elisp-slime-nav ein skewer-mode request-deferred websocket
+                        request deferred js2-mode simple-httpd dumb-jump
+                        dracula-theme django-theme disaster diminish diff-hl deft
+                        define-word darktooth-theme autothemer darkokai-theme
+                        darkmine-theme darkburn-theme dakrone-theme cython-mode
+                        cyberpunk-theme company-web web-completion-data
+                        company-tern dash-functional tern company-statistics
+                        company-shell company-ghci company-ghc ghc haskell-mode
+                        company-emoji company-cabal company-c-headers
+                        company-auctex company-anaconda company command-log-mode
+                        column-enforce-mode color-theme-sanityinc-tomorrow
+                        color-theme-sanityinc-solarized color-identifiers-mode
+                        coffee-mode cmm-mode cmake-mode clues-theme
+                        clean-aindent-mode clang-format cherry-blossom-theme
+                        busybee-theme bubbleberry-theme
+                        birds-of-paradise-plus-theme bind-map bind-key biblio
+                        biblio-core badwolf-theme auto-yasnippet yasnippet
+                        auto-highlight-symbol auto-dictionary auto-compile packed
+                        auctex apropospriate-theme anti-zenburn-theme
+                        anaconda-mode pythonic f dash s ample-theme alect-themes
+                        aggressive-indent afternoon-theme adaptive-wrap ace-window
+                        ace-link ace-jump-helm-line helm avy helm-core async
+                        ac-ispell auto-complete popup ample-zen-theme))
+   '(paradox-github-token t)
+   '(pos-tip-background-color "#A6E22E")
+   '(pos-tip-foreground-color "#272822")
+   '(safe-local-variable-values
+     '((eval let
+             ((default-directory
+               (locate-dominating-file buffer-file-name ".dir-locals.el")))
+             (make-local-variable 'coq-prog-name)
+             (setq coq-prog-name (expand-file-name "../hoqtop")))
+       (py-indent-offset . 4)))
+   '(weechat-color-list
+     (unspecified "#272822" "#3E3D31" "#A20C41" "#F92672" "#67930F" "#A6E22E"
+                  "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0"
+                  "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(company-tooltip ((t (:weight normal))))
+   '(company-tooltip-selection ((t (:foreground "DarkOrange1"))))
+   '(fixed-pitch ((t (:weight ultralight))))
+   '(font-latex-sectioning-0-face ((t (:inherit default :height 1.0 :weight bold))))
+   '(font-latex-sectioning-1-face ((t (:inherit default :height 1.0 :weight bold))))
+   '(font-latex-sectioning-2-face ((t (:inherit default :height 1.0 :weight bold))))
+   '(font-latex-sectioning-3-face ((t (:inherit default :height 1.0 :weight bold))))
+   '(font-latex-sectioning-4-face ((t (:inherit default :height 1.0 :weight bold))))
+   '(font-latex-sectioning-5-face ((t (:inherit default :height 1.0 :weight bold))))
+   '(font-latex-slide-title-face ((t (:inherit default :height 1.0 :weight bold))))
+   '(font-lock-builtin-face ((t (:weight semibold))))
+   '(font-lock-comment-face ((t (:slant italic :weight ultralight))))
+   '(font-lock-constant-face ((t (:weight semibold))))
+   '(font-lock-doc-face ((t (:slant italic :weight ultralight))))
+   '(font-lock-function-name-face ((t (:weight semibold))))
+   '(font-lock-keyword-face ((t (:weight bold))))
+   '(font-lock-string-face ((t (:slant italic))))
+   '(helm-selection ((t (:underline t))))
+   '(info-title-1 ((t (:inherit default :height 1.0 :weight bold))))
+   '(info-title-2 ((t (:inherit default :height 1.0 :weight bold))))
+   '(info-title-3 ((t (:inherit default :height 1.0 :weight bold))))
+   '(info-title-4 ((t (:inherit default :height 1.0 :weight bold))))
+   '(markdown-header-face ((t (:inherit default :height 1.0 :weight bold))))
+   '(markdown-header-face-1 ((t (:inherit default :height 1.0 :weight bold))))
+   '(markdown-header-face-2 ((t (:inherit default :height 1.0 :weight bold))))
+   '(markdown-header-face-3 ((t (:inherit default :height 1.0 :weight bold))))
+   '(markdown-header-face-4 ((t (:inherit default :height 1.0 :weight bold))))
+   '(markdown-header-face-5 ((t (:inherit default :height 1.0 :weight bold))))
+   '(markdown-header-face-6 ((t (:inherit default :height 1.0 :weight bold))))
+   '(org-document-title ((t (:inherit default :height 1.0 :weight bold))))
+   '(org-kbd ((t (:background "LemonChiffon1" :foreground "dark magenta" :box (:line-width 2 :style released-button)))))
+   '(org-level-1 ((t (:inherit default :height 1.0 :weight bold))))
+   '(org-level-2 ((t (:inherit default :height 1.0 :weight bold))))
+   '(org-level-3 ((t (:inherit default :height 1.0 :weight bold))))
+   '(org-level-4 ((t (:inherit default :height 1.0 :weight bold))))
+   '(org-level-5 ((t (:inherit default :height 1.0 :weight bold))))
+   '(org-level-6 ((t (:inherit default :height 1.0 :weight bold))))
+   '(org-level-7 ((t (:inherit default :height 1.0 :weight bold))))
+   '(org-level-8 ((t (:inherit default :height 1.0 :weight bold)))))
+  ) ;; End of dotspacemacs/emacs-custom-settings
