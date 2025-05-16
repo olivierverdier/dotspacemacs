@@ -610,10 +610,11 @@ See the header of this file for more information."
   (spacemacs/load-spacemacs-env)
   )
 (defun dotspacemacs/user-init ()
-  "Initialization function for user code.
-It is called immediately after `dotspacemacs/init'.  You are free to put almost
-any user code here.  The exception is org related code, which should be placed
-in `dotspacemacs/user-config'."
+  "Initialization for user code:
+This function is called immediately after `dotspacemacs/init', before layer
+configuration.
+It is mostly for variables that should be set before packages are loaded.
+If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq-default
    ;; Evil
    evil-want-C-i-jump t
