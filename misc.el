@@ -12,14 +12,25 @@
 (setq lsp-julia-default-environment "~/.julia/environments/v1.11")
 
 ;; some leader-keys
-(spacemacs/set-leader-keys
-  "fi" 'evil-show-file-info
-  ;; "gs" (defun ov/magit-status-move-far-right ()
-  ;;        (interactive)
-  ;;        (magit-status)
-  ;;        (evil-window-move-far-right)
-  ;;        )
-  "tt" (defun ov/indent-tabs ()
-         (interactive)
-         (setq indent-tabs-mode t))
-  )
+;; (spacemacs/set-leader-keys
+;;   "fi" 'evil-show-file-info
+;;   ;; "gs" (defun ov/magit-status-move-far-right ()
+;;   ;;        (interactive)
+;;   ;;        (magit-status)
+;;   ;;        (evil-window-move-far-right)
+;;   ;;        )
+;;   "tt" (defun ov/indent-tabs ()
+;;          (interactive)
+;;          (setq indent-tabs-mode t))
+;;   )
+
+
+;; Visual (wrapped) line indicators
+(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+
+;; Make sure bookmarks are saved from one install to another
+(setq bookmark-default-file (expand-file-name (concat dotspacemacs-directory "bookmarks")))
+
+(with-eval-after-load 'helm
+  (define-key helm-map (kbd "C-j") 'helm-next-line)
+  (define-key helm-map (kbd "C-k") 'helm-previous-line))

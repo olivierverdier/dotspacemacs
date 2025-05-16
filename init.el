@@ -692,11 +692,6 @@ before packages are loaded."
   ;; (setq ranger-persistent-sort "t")
 
 
-  ;; Visual (wrapped) line indicators
-  (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
-
-  ;; Make sure bookmarks are saved from one install to another
-  (setq bookmark-default-file (expand-file-name (concat dotspacemacs-directory "bookmarks")))
 
 
   ) ;; End of dotspacemacs/user-config
