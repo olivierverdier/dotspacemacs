@@ -39,57 +39,73 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ;; helm
+     beancount
+     ranger
      (auto-completion
       :variables
-       auto-completion-return-key-behavior nil
+      auto-completion-return-key-behavior nil
       )
-     ;; better-defaults
      bibtex
      c-c++
+     ;; cmake
      colors
-     command-log
-     coq
+     ;; command-log
+     ;; coq
      cscope
-     dash
-     deft
+     csv
+     ;; dash
+     ;; deft
      emacs-lisp
-     emoji
+     ;; emoji
      evil-snipe
      ;; eyebrowse
      ;; fasd
      (git :variables
           git-magit-status-fullscreen t
+          git-enable-magit-delta-plugin t
+          git-enable-magit-todos-plugin t
           )
      ;; gnus
-     graphviz
+     ;; graphviz
      gtags
-     (haskell :variables
-              haskell-completion-backend 'intero
-              )
+     ;; haskell
      html
-     ipython-notebook
+     ;; ipython-notebook
      javascript
+     (julia :variables
+            ;; julia-backend 'lsp
+            julia-mode-enable-ess t
+            )
+     (llm-client :variables llm-client-enable-gptel t)
+     lsp
      markdown
-     org
+     ;; multiple-cursors
+     (org :variables
+          org-enable-modern-support t
+          org-enable-org-brain-support t
+          org-enable-roam-support t
+          org-enable-sticky-header t
+          org-enable-appear-support t
+          org-enable-github-support t
+          )
      ;; pdf-tools
      ;; (osx :variables
      ;;      osx-use-option-as-meta nil
      ;;  )
      (python :variables
              python-test-runner 'pytest
-             )
-     (ranger :variables
-             ranger-replace-dired t
-             )
+             python-backend 'lsp
+             python-lsp-server 'pyright)
      search-engine
-     semantic
      shell-scripts
-     ;; spacemacs-ivy
-     spacemacs-layouts
      spell-checking
+     ;; sphinx
      syntax-checking
+     ;; systemd
+     templates
      themes-megapack
-     ;; treemacs
+     toml
+     treemacs
      ;; unimpaired
      (latex :variables
             latex-enable-auto-fill nil
@@ -97,17 +113,16 @@ This function should only modify configuration layer settings."
             latex-enable-folding nil
             )
      (shell :variables
-            shell-default-shell 'shell
+            shell-default-shell 'vterm
             shell-default-height 30
             shell-default-position 'bottom)
-     shell-scripts
      (theming :variables
               theming-headings-inherit-from-default 'all
               theming-headings-same-size 'all
               theming-headings-bold 'all)
      version-control
-     ;; vim-powerline
      ;; vinegar
+     ;; windows-scripts
      yaml
      )
 
